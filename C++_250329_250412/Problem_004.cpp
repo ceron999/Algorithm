@@ -51,4 +51,34 @@ namespace Problem_004
 
         return answer;
     }
+
+    // 교재 
+    vector<int> solution2(vector<int> answers) {
+        vector<int> answer;
+
+        // 1. 패턴 정립
+        vector<int> aPattern = { 1,2,3,4,5 };
+        vector<int> bPattern = { 2,1,2,3,2,4,2,5 };
+        vector<int> cPattern = { 3,3,1,1,2,2,4,4,5,5 };
+
+        // 2. a,b,c의 정답을 구현
+        vector<int> matchCnt(3);
+        for (int i = 0; i < answers.size(); i++)
+        {
+            if (answers[i] == aPattern[i % aPattern.size()])
+                matchCnt[0]++;
+            if (answers[i] == bPattern[i % bPattern.size()])
+                matchCnt[1]++;
+            if (answers[i] == cPattern[i % cPattern.size()])
+                matchCnt[2]++;
+        }
+
+        int maxValue = *max_element(matchCnt.begin(), matchCnt.end());
+        for (int i = 0; i < 3; i++)
+        {
+            if (matchCnt[i] == maxValue)
+                answer.push_back(i + 1);
+        }
+        return answer;
+    }
 }
