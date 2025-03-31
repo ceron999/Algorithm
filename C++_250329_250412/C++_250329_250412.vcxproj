@@ -136,6 +136,12 @@
     <ClCompile Include="Problem_006.cpp" />
     <ClCompile Include="Problem_007.cpp" />
     <ClCompile Include="Problem_008.cpp" />
+    <ClCompile Include="Problem_009.cpp" />
+    <ClCompile Include="Problem_010.cpp" />
+    <ClCompile Include="Problem_011.cpp" />
+    <ClCompile Include="Problem_012.cpp" />
+    <ClCompile Include="Problem_013.cpp" />
+    <ClCompile Include="Problem_014.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Problem_001.h" />
