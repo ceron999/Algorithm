@@ -37,30 +37,64 @@ namespace P12
 	vector<int> solution(vector<int> prices) {
 		vector<int> answer(prices.size());
 
-		for (int idx = 0; idx < prices.size(); idx++)
+		for (int comparedIdx = 0; comparedIdx < prices.size(); comparedIdx++)
 		{
 			int count = 0;
-			for (int nowNumIndex = idx + 1; nowNumIndex < prices.size(); nowNumIndex++)
+			for (int comparingIdx = comparedIdx + 1; comparingIdx < prices.size(); comparingIdx++)
 			{
-				if (prices[idx] > prices[nowNumIndex])
+				// 처음으로 숫자가 작아지면 count를 더 세지 않는다.
+				if (prices[comparedIdx] > prices[comparingIdx])
 				{
-					continue;
+					count++;
+					break;
 				}
 				count++;
 			}
-			answer[idx] = count;
+			if (comparedIdx == prices.size() - 1)
+			{
+				answer[comparedIdx] = 0;
+			}
+			else
+				answer[comparedIdx] = count;
 		}
 
+
+		return answer;
+	}
+
+	// 교재 정답
+	vector<int> solution2(vector<int> prices) 
+	{
+		// 가격이 떨어지지 않은 기간을 저장한 벡터    
+		vector<int> answer(prices.size());
+		// 스택에는 prices의 인덱스가 들어감, 이전 가격과 현재 가격을 비교하기 위한 용도로 사용됨  
+		stack<int> s;
+
+		int priceNum = prices.size();
+
+		for (int i = 0;i < priceNum;i++) {
+			while (!s.empty() && prices[s.top()] > prices[i]) {
+				// 가격이 떨어졌으므로 이전 가격의 기간 계산 
+				answer[s.top()] = i - s.top();
+				s.pop();
+			}
+			s.push(i);
+		}
+		// 스택에 남아있는 가격들은 가격이 떨어지지 않은 경우
+		while (!s.empty()) {
+			answer[s.top()] = priceNum - s.top() - 1;
+			s.pop();
+		}
 		return answer;
 	}
 }
 
-int main()
-{
-	vector<int> result = P12::solution({ 2,3,1,2,3 });
-
-	for (int i : result)
-	{
-		cout << i << " ";
-	}
-}
+//int main()
+//{
+//	vector<int> result = P12::solution2({ 1,2,3,2,3 });
+//
+//	for (int i : result)
+//	{
+//		cout << i << " ";
+//	}
+//}
