@@ -142,6 +142,8 @@
     <ClCompile Include="Problem_012.cpp" />
     <ClCompile Include="Problem_013.cpp" />
     <ClCompile Include="Problem_014.cpp" />
+    <ClCompile Include="Problem_015.cpp" />
+    <ClCompile Include="Problem_016.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Problem_001.h" />
