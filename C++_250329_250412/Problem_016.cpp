@@ -60,9 +60,9 @@ namespace P16
 	}
 }
 
-int main()
-{
-	vector<int> result = P16::solution({ 98, 98, 98, 98, 98, 99 }, { 1, 1, 1, 1, 1, 1 });
-	for (int i : result)
-		cout << i << " ";
-}
+//int main()
+//{
+//	vector<int> result = P16::solution({ 98, 98, 98, 98, 98, 99 }, { 1, 1, 1, 1, 1, 1 });
+//	for (int i : result)
+//		cout << i << " ";
+//}
