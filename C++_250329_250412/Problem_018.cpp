@@ -72,9 +72,9 @@ namespace P18
 
 }
 
-int main()
-{
-	bool result = P18::solution({ 1,2,3,4,8 }, 7);
-	
-	cout << result << " ";
-}
+//int main()
+//{
+//	bool result = P18::solution({ 1,2,3,4,8 }, 7);
+//	
+//	cout << result << " ";
+//}
