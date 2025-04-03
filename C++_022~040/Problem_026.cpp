@@ -20,7 +20,8 @@ namespace P26
 
 int main()
 {
-    vector<int> result = P26::solution(3, { "hello" });
+    vector<int> result = P26::solution({ "muzi", "frodo", "apeach", "neo" },
+        { "muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi" });
     for (int i : result)
         cout << i << " ";
 }

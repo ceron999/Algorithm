@@ -32,7 +32,7 @@ namespace P25
 
         if (nowGenreList.size() == 1)
         {
-            mostPlayedMusics.push_back(nowGenreList[0][0]);
+            mostPlayedMusics.push_back(nowGenreList[0][1]);
             return mostPlayedMusics;
         }
         else
@@ -75,10 +75,10 @@ namespace P25
     }
 }
 
-int main()
-{
-    vector<int> result = P25::solution({ "classic", "pop", "classic", "classic", "pop" }, 
-                                        { 500, 600, 150, 800, 2500 });
-    for (int i : result)
-        cout << i << " ";
-}
+//int main()
+//{
+//    vector<int> result = P25::solution({ "classic", "pop", "classic", "classic", "pop" }, 
+//                                        { 500, 600, 150, 800, 2500 });
+//    for (int i : result)
+//        cout << i << " ";
+//}
