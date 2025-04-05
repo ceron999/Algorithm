@@ -67,9 +67,9 @@ namespace P30
     }
 }
 
-int main()
-{
-    int result = P30::solution(8,5,6);
-
-        std::cout << result << " ";
-}
+//int main()
+//{
+//    int result = P30::solution(8,5,6);
+//
+//        std::cout << result << " ";
+//}
