@@ -14,7 +14,7 @@ namespace P34
 
 //int main()
 //{
-//    vector<int> result = P31::solution( enroll, referral, seller, amount );
+//    vector<int> result = P34::solution( enroll, referral, seller, amount );
 //
 //    for(int i : result)
 //        cout << i << " ";
