@@ -129,6 +129,16 @@
   <ItemGroup>
     <ClCompile Include="Problem Tamplete.cpp" />
     <ClCompile Include="Problem_036.cpp" />
+    <ClCompile Include="Problem_037.cpp" />
+    <ClCompile Include="Problem_038.cpp" />
+    <ClCompile Include="Problem_039.cpp" />
+    <ClCompile Include="Problem_040.cpp" />
+    <ClCompile Include="Problem_041.cpp" />
+    <ClCompile Include="Problem_042.cpp" />
+    <ClCompile Include="Problem_043.cpp" />
+    <ClCompile Include="Problem_044.cpp" />
+    <ClCompile Include="Problem_045.cpp" />
+    <ClCompile Include="Problem_046.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
