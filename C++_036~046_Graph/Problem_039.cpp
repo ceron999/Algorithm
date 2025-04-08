@@ -53,13 +53,13 @@ namespace P39
     }
 }
 
-int main()
-{
-    vector<tuple<int, int, int>> edges = {  {0,1,4},{0,2,3},{0,4,-6},{1,3,5},
-                                            {2,1,2},{3,0,7},{3,2,4},{4,2,2} };
-
-    vector<int> result2 = P39::solution(5, edges, 0);
-
-    for(int i : result2)
-        cout << i << " ";
-}
+//int main()
+//{
+//    vector<tuple<int, int, int>> edges = {  {0,1,4},{0,2,3},{0,4,-6},{1,3,5},
+//                                            {2,1,2},{3,0,7},{3,2,4},{4,2,2} };
+//
+//    vector<int> result2 = P39::solution(5, edges, 0);
+//
+//    for(int i : result2)
+//        cout << i << " ";
+//}

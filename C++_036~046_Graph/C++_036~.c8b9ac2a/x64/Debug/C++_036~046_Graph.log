@@ -1,15 +1,2 @@
-﻿  Problem Tamplete.cpp
-  Problem_036.cpp
-  Problem_037.cpp
-  Problem_038.cpp
-  Problem_039.cpp
-  Problem_040.cpp
-  Problem_041.cpp
-  Problem_042.cpp
-  Problem_043.cpp
-  Problem_044.cpp
-  Problem_045.cpp
-  Problem_046.cpp
-  코드를 생성하고 있습니다...
-Problem_039.obj : error LNK2005: main이(가) Problem_038.obj에 이미 정의되어 있습니다.
-D:\GameDevelop\Algorithm\C++_036~046_Graph\x64\Debug\C++_036~046_Graph.exe : fatal error LNK1169: 여러 번 정의된 기호가 있습니다.
+﻿  Problem_046.cpp
+  C++_036~046_Graph.vcxproj -> C:\Temp\Algorithm\C++_036~046_Graph\x64\Debug\C++_036~046_Graph.exe

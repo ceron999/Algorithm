@@ -158,10 +158,10 @@ namespace P38_Answer
         return distances;
     }
 }
-int main()
-{
-    vector<int> result2 = P38::solution(0, 3, {{0,1,9},{0,2,3} ,{1,0,5} ,{2,1,1} });
-
-    for(int i : result2)
-        cout << i << " ";
-} 
+//int main()
+//{
+//    vector<int> result2 = P38::solution(0, 3, {{0,1,9},{0,2,3} ,{1,0,5} ,{2,1,1} });
+//
+//    for(int i : result2)
+//        cout << i << " ";
+//} 
