@@ -88,15 +88,15 @@ namespace P47_Answer
         return results;
     }
 }
-int main()
-{
-    vector<vector<int>> result = P47::solution(7);
-
-    for (int i = 0; i < result.size(); i++)
-    {
-        for (int j = 0; j < result[i].size(); j++)
-            cout << result[i][j] << " ";
-
-        cout << endl;
-    }
-}
+//int main()
+//{
+//    vector<vector<int>> result = P47::solution(7);
+//
+//    for (int i = 0; i < result.size(); i++)
+//    {
+//        for (int j = 0; j < result[i].size(); j++)
+//            cout << result[i][j] << " ";
+//
+//        cout << endl;
+//    }
+//}
