@@ -54,10 +54,10 @@ namespace P67
     }
 }
 
-int main()
-{
-    vector<int> result = P67::solution(10, 2);
-
-    for(int i : result)
-        cout << i << " ";
-}
+//int main()
+//{
+//    vector<int> result = P67::solution(10, 2);
+//
+//    for(int i : result)
+//        cout << i << " ";
+//}
