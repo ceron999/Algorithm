@@ -1,12 +1,4 @@
-﻿  Problem_070.cpp
-  Problem_071.cpp
-  Problem_077.cpp
-  Problem_072.cpp
-  Problem_073.cpp
-  Problem_074.cpp
-  Problem_075.cpp
-  Problem_076.cpp
-  Problem_078.cpp
-  Problem_079.cpp
-  코드를 생성하고 있습니다...
+﻿  Problem_072.cpp
+C:\Temp\Algorithm\C++_070~079_DP\Problem_072.cpp(18,9): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Temp\Algorithm\C++_070~079_DP\Problem_072.cpp(19,9): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   C++_070~079_DP.vcxproj -> C:\Temp\Algorithm\C++_070~079_DP\x64\Debug\C++_070~079_DP.exe
