@@ -46,16 +46,16 @@ namespace P72
 	}
 }
 
-int main()
-{
-	vector<vector<int>> arr =
-	{
-		{1,7,13,2,6},
-		{2,-4,2,5,4},
-		{5,3,5,-3,1},
-	};
-
-    int result = P72::solution(arr);
-
-        cout << result << " ";
-}
+//int main()
+//{
+//	vector<vector<int>> arr =
+//	{
+//		{1,7,13,2,6},
+//		{2,-4,2,5,4},
+//		{5,3,5,-3,1},
+//	};
+//
+//    int result = P72::solution(arr);
+//
+//        cout << result << " ";
+//}
