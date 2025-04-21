@@ -31,10 +31,10 @@ namespace P80
 	}
 }
 
-int main()
-{
-    vector<int> result = P80::solution(123);
-
-    for (int i : result)
-        cout << i << " ";
-}
+//int main()
+//{
+//    vector<int> result = P80::solution(123);
+//
+//    for (int i : result)
+//        cout << i << " ";
+//}
