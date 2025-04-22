@@ -59,9 +59,9 @@ namespace P46
 
 }
 
-int main()
-{
-    int result2 = P46::solution(9, { {1,3},{2,3},{3,4},{4,5},{4,6},{4,7},{7,8},{7,9}});
-
-        cout << result2 << " ";
-}
+//int main()
+//{
+//    int result2 = P46::solution(9, { {1,3},{2,3},{3,4},{4,5},{4,6},{4,7},{7,8},{7,9}});
+//
+//        cout << result2 << " ";
+//}
