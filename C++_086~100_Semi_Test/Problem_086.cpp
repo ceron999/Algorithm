@@ -10,46 +10,57 @@
 using namespace std;
 namespace P87
 {
-    // d, l, r, u 순서여야함
-    string getDir(vector<int> dir, int k)
-    {
-        string result;
+#include <string>
+#include <vector>
+#include <cstdlib>
 
-        char yDir = (dir[0] > 0) ? 'd' : 'u';
-        for (int i = 0; i < abs(dir[0]); i++)
-        {
-            result.push_back(yDir);
-        }
+    using namespace std;
 
-        char xDir = (dir[1] < 0) ? 'l' : 'r';
-        for (int i = 0; i < abs(dir[1]); i++)
-        {
-            result.push_back(xDir);
-        }
+    int maxHeight, maxWidth, targetRow, targetCol, maxSteps;
+    int dx[4] = { 1, 0, 0, -1 };
+    int dy[4] = { 0, -1, 1, 0 };
+    char dir[4] = { 'd', 'l', 'r', 'u' };
+    string path = "";
+    bool found = false;
 
-        sort(result.begin(), result.end());
-
-        int remain = k - (abs(dir[0]) + abs(dir[1]));
-
-        while (remain != 0)
-        {
-            
-        }
-
-        return result;
+    // 보드 내에 있는지 확인
+    bool InBounds(int x, int y) {
+        return x > 0 && x <= maxHeight && y > 0 && y <= maxWidth;
     }
+
+    // 남은 이동 횟수로 도달 가능한지 확인
+    bool CanReach(int x, int y, int steps) {
+        return abs(x - targetRow) + abs(y - targetCol) <= steps;
+    }
+
+    // 경로 찾기
+    void Search(int x, int y, int steps, string currPath) {
+        if (steps == 0 && x == targetRow && y == targetCol) {
+            found = true;
+            path = currPath;
+            return;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int nextX = x + dx[i];
+            int nextY = y + dy[i];
+            if (!InBounds(nextX, nextY) || !CanReach(nextX, nextY, steps - 1)) continue;
+            Search(nextX, nextY, steps - 1, currPath + dir[i]);
+            if (found) return;
+        }
+    }
+
+    // 메인 함수
     string solution(int n, int m, int x, int y, int r, int c, int k) {
-        string answer = "";
+        maxHeight = n;
+        maxWidth = m;
+        targetRow = r;
+        targetCol = c;
+        maxSteps = k;
 
-        // (x로 이동할 거리, y로 이동할 거리)
-        vector<int> dir = { (r - x), (c - y) };
-
-        // 0. 결코 도달할 수 없으면 impossible을 반환
-        if (abs(dir[0]) + abs(dir[1]) > k || (abs(dir[0]) + abs(dir[1]) - k) % 2 != 0)
-            return "impossible";
-
-        answer = getDir(dir, k);
-        return answer;
+        if (!CanReach(x, y, k) || ((abs(x - r) + abs(y - c)) % 2) != (k % 2)) return "impossible";
+        Search(x, y, k, "");
+        return path;
     }
 }
 
