@@ -68,14 +68,14 @@ namespace P43_Answer
     }
 }
 
-int main()
-{
-    vector<int> info = { 0,0,1,1,1,0,1,0,1,0,1,1 };
-    vector<vector<int>> edges = {
-    {0,1}, {1,2}, {1,4}, {0,8}, {8,7},
-    {9,10}, {9,11}, {4,3}, {6,5}, {4,6}, {8,9}
-    };
-    int result2 = P43_Answer::solution(info, edges);
-
-        cout << result2 << " ";
-}
+//int main()
+//{
+//    vector<int> info = { 0,0,1,1,1,0,1,0,1,0,1,1 };
+//    vector<vector<int>> edges = {
+//    {0,1}, {1,2}, {1,4}, {0,8}, {8,7},
+//    {9,10}, {9,11}, {4,3}, {6,5}, {4,6}, {8,9}
+//    };
+//    int result2 = P43_Answer::solution(info, edges);
+//
+//        cout << result2 << " ";
+//}
