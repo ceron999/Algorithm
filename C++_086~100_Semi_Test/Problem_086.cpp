@@ -64,9 +64,9 @@ namespace P87
     }
 }
 
-int main()
-{
-    string result = P87::solution(3,4,2,3,3,1,5);
-
-        cout << result << " ";
-}
+//int main()
+//{
+//    string result = P87::solution(3,4,2,3,3,1,5);
+//
+//        cout << result << " ";
+//}

@@ -132,6 +132,8 @@
     <ClCompile Include="Problem_088.cpp" />
     <ClCompile Include="Problem_089.cpp" />
     <ClCompile Include="Problem_090.cpp" />
+    <ClCompile Include="Problem_091.cpp" />
+    <ClCompile Include="Problem_092.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
