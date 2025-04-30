@@ -159,18 +159,18 @@ namespace P94_Answer
     }
 }
 
-int main()
-{
-    vector<vector<string>> places = 
-    {
-        { "POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP" },
-        { "POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP" },
-        { "PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX" },
-        { "OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO" },
-        { "PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP" }
-    };
-	vector<int> result = P94::solution(places);
-
-	for (int i : result)
-		cout << i << " ";
-}
+//int main()
+//{
+//    vector<vector<string>> places = 
+//    {
+//        { "POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP" },
+//        { "POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP" },
+//        { "PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX" },
+//        { "OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO" },
+//        { "PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP" }
+//    };
+//	vector<int> result = P94::solution(places);
+//
+//	for (int i : result)
+//		cout << i << " ";
+//}
