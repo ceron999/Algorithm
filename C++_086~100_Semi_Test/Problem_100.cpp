@@ -61,16 +61,18 @@ namespace P100
             break;
         }
 
-        return { minRate , maxRate };
+        if (maxRate == 0)
+            maxRate = 1;
+        return { maxRate , minRate };
     }
 }
 
-int main()
-{
-    vector<int> lottos = { 44, 1, 0, 0, 31, 25 };
-    vector<int> win_nums = { 31, 10, 45, 1, 6, 19 };
-	vector<int> result = P100::solution(lottos, win_nums);
-
-	for (int i : result)
-		cout << i << " ";
-}
+//int main()
+//{
+//    vector<int> lottos = { 44, 1, 0, 0, 31, 25 };
+//    vector<int> win_nums = { 31, 10, 45, 1, 6, 19 };
+//	vector<int> result = P100::solution(lottos, win_nums);
+//
+//	for (int i : result)
+//		cout << i << " ";
+//}
