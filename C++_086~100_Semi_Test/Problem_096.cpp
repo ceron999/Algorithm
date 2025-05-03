@@ -42,11 +42,11 @@ namespace P96
     }
 }
 
-int main()
-{
-    vector<int> queue1 = { 3, 2, 7, 2 };
-    vector<int> queue2 = { 4, 6, 5, 1 };
-	int result = P96::solution(queue1, queue2);
-
-		cout << result << " ";
-}
+//int main()
+//{
+//    vector<int> queue1 = { 3, 2, 7, 2 };
+//    vector<int> queue2 = { 4, 6, 5, 1 };
+//	int result = P96::solution(queue1, queue2);
+//
+//		cout << result << " ";
+//}
