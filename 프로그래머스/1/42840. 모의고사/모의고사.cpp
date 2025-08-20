@@ -1,63 +1,46 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
-bool cmp(const pair<int, int>& a, const pair<int, int>& b) 
+vector<int> solution(vector<int> answers)
 {
-    if (a.second == b.second) 
-        return a.first < b.first;
-    return a.second > b.second;
-}
-
-vector<int> solution(vector<int> answers) {
     vector<int> answer;
+    int answersSize = answers.size();
 
-    // 1. 패턴 정립
-    vector<int> aPattern = { 1,2,3,4,5 };
-    vector<int> bPattern = { 2,1,2,3,2,4,2,5 };
-    vector<int> cPattern = { 3,3,1,1,2,2,4,4,5,5 };
+    vector<int> answerPattern_1 = { 1,2,3,4,5 };
+    vector<int> answerPattern_2 = { 2,1,2,3,2,4,2,5, };
+    vector<int> answerPattern_3 = { 3,3,1,1,2,2,4,4,5,5 };
 
-    // 2. a,b,c의 정답을 구현
-    vector<vector<int>> inputs(3, vector<int>());
-    for (int i =0; i< answers.size();i++)
+    int result_1 = 0;
+    int result_2 = 0;
+    int result_3 = 0;
+
+    for (int i = 0; i < answersSize;i++)
     {
-        inputs[0].push_back(aPattern[i % aPattern.size()]);
-        inputs[1].push_back(bPattern[i % bPattern.size()]);
-        inputs[2].push_back(cPattern[i % cPattern.size()]);
-    }
-
-    // 정답 수 확인
-    vector<pair<int, int>> corrects = { {1,0}, {2,0},{3,0} };
-    for (int i = 0; i < answers.size(); i++)
-    {
-        if (answers[i] == inputs[0][i]) corrects[0].second++;
-        if (answers[i] == inputs[1][i]) corrects[1].second++;
-        if (answers[i] == inputs[2][i]) corrects[2].second++;
+        if (answers[i] == answerPattern_1[i % answerPattern_1.size()]) result_1++;
+        if (answers[i] == answerPattern_2[i % answerPattern_2.size()]) result_2++;
+        if (answers[i] == answerPattern_3[i % answerPattern_3.size()]) result_3++;
     }
 
-    sort(corrects.begin(), corrects.end(), cmp);
-    
-    for (pair<int, int> correct : corrects)
+    vector<pair<int, int>> results =
     {
-        cout << correct.first << " " << correct.second << endl;
-    }
-    if(corrects[0].second == corrects[1].second && corrects[1].second == corrects[2].second)
-    {
-        answer.push_back(corrects[0].first);
-        answer.push_back(corrects[1].first);
-        answer.push_back(corrects[2].first);
-    }
-    else if(corrects[0].second == corrects[1].second && corrects[1].second != corrects[2].second)
-    {
-        answer.push_back(corrects[0].first);
-        answer.push_back(corrects[1].first);
-    }
-    else
-    {
-        answer.push_back(corrects[0].first);
-    }
+        {1, result_1},
+        {2, result_2},
+        {3, result_3},
+    };
+
+    sort(results.begin(), results.end(), [](auto& a, auto& b) { return a.second > b.second; });
+
+    answer.push_back(results[0].first);
+
+    if(results[1].second == results[0].second)
+        answer.push_back(results[1].first);
+
+    if (results[2].second == results[0].second)
+        answer.push_back(results[2].first);
 
     return answer;
 }

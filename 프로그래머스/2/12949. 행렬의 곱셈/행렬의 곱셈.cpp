@@ -1,29 +1,22 @@
-#include <iostream>
+#include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
-vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2) {
-    
-    int rowCount = (int)arr1.size();
-    int colCount = (int)arr2[0].size();
-    int indexCount = (int)arr2.size();
+vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2) 
+{
+    size_t rowSize = arr1.size();
+    size_t colSize = arr2[0].size();
 
-    vector<vector<int>> answer(rowCount, vector<int>(colCount));
+    vector<vector<int>> answer;
+    answer.resize(rowSize, vector<int>(colSize, 0));
 
-    // arr1의 row 행과 arr2의 col 열을 idx순서대로 곱해 더한 뒤 answer[row,col]에 저장
-    for (int row = 0; row < rowCount; row++)
+    for (int i = 0; i < answer.size(); i++)
     {
-        for (int col = 0; col < colCount; col++)
+        for (int j = 0; j < answer[0].size(); j++)
         {
-            int sum = 0;
-            for (int idx = 0; idx < indexCount;idx++)
-            {
-                sum += arr1[row][idx] * arr2[idx][col];
-            }
-
-            answer[row][col] = sum;
+            for (int k = 0; k < arr1[0].size(); k++)
+                answer[i][j] += arr1[i][k] * arr2[k][j];
         }
     }
 
