@@ -112,12 +112,12 @@ namespace p3
     }
 }
 
-int main()
-{
-    string input1 = "LLLLULRLR";
-
-    int  result = p3::solution(input1);
-
-        cout << result << ",";
-
-}
+//int main()
+//{
+//    string input1 = "LLLLULRLR";
+//
+//    int  result = p3::solution(input1);
+//
+//        cout << result << ",";
+//
+//}
