@@ -132,6 +132,15 @@
     <ClCompile Include="P_003.cpp" />
     <ClCompile Include="P_007.cpp" />
     <ClCompile Include="P_010.cpp" />
+    <ClCompile Include="P_011.cpp" />
+    <ClCompile Include="P_012.cpp" />
+    <ClCompile Include="P_013.cpp" />
+    <ClCompile Include="P_017.cpp" />
+    <ClCompile Include="P_16.cpp" />
+    <ClCompile Include="P_28.cpp" />
+    <ClCompile Include="P_30.cpp" />
+    <ClCompile Include="P_31.cpp" />
+    <ClCompile Include="tamplete.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

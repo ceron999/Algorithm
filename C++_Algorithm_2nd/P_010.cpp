@@ -75,11 +75,11 @@ namespace p10
     }
 
 }
-int main()
-{
-    string input = "[](){}";
-
-    int i = p10::solution(input);
-
-        cout << i << endl;
-}
+//int main()
+//{
+//    string input = "[](){}";
+//
+//    int i = p10::solution(input);
+//
+//        cout << i << endl;
+//}
