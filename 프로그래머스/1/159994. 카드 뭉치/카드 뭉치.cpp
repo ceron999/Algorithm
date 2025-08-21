@@ -1,41 +1,39 @@
 #include <string>
 #include <vector>
 #include <queue>
-#include <algorithm>
 
 using namespace std;
-
-string solution(vector<string> cards1, vector<string> cards2, vector<string> goal) 
-{
+string solution(vector<string> cards1, vector<string> cards2, vector<string> goal) {
     string answer = "";
-    queue<string> card1Queue;
-    queue<string> card2Queue;
 
-    for (string s : cards1)
-    {
-        card1Queue.push(s);
-    }
-    for (string s : cards2)
-    {
-        card2Queue.push(s);
-    }
+    bool isAvailable = true;
 
-    int nowIndex = 0;
-    while(goal.size() != nowIndex)
+    queue<string> cardQueue1;
+    queue<string> cardQueue2;
+    queue<string> goalQueue;
+
+    for (string s : cards1) cardQueue1.push(s);
+    for (string s : cards2) cardQueue2.push(s);
+    for (string s : goal) goalQueue.push(s);
+
+    while (!goalQueue.empty())
     {
-        if (card1Queue.size() > 0 && card1Queue.front() == goal[nowIndex])
+        if (!cardQueue1.empty() && goalQueue.front() == cardQueue1.front())
         {
-            card1Queue.pop();
-            nowIndex++;
+            goalQueue.pop();
+            cardQueue1.pop();
         }
-        else if (card2Queue.size() > 0 && card2Queue.front() == goal[nowIndex])
+        else if (!cardQueue2.empty() && goalQueue.front() == cardQueue2.front())
         {
-            card2Queue.pop();
-            nowIndex++;
+            goalQueue.pop();
+            cardQueue2.pop();
         }
         else
+        {
+            isAvailable = false;
             break;
+        }
     }
-    answer = (goal.size() == nowIndex) ? "Yes" : "No";
-    return answer;
+
+    return isAvailable ? "Yes" : "No";
 }
