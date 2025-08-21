@@ -4,42 +4,31 @@ using namespace std;
 
 int solution(int n, int a, int b)
 {
-    // 무조건 a < b이도록 구현
-    if (b < a)
-    {
-        int temp = b;
-        b = a;
-        a = temp;
-    }
+    int answer = 0;
 
-    int answer = 1;
-    int pivot = n / 2;
-    n /= 2;
-    while (n > 1)
+    bool canSplit = true;
+
+    while (true)
     {
-        // 1. a,b가 pivot 아래 있을 떄
-        if (a <= pivot && b <= pivot)
+        if (n / 2 >= a && n / 2 >= b)
         {
             n /= 2;
-            pivot -= n;
         }
-        // 2. a,b가 pivot 위에 있을 떄
-        else if (a > pivot && b > pivot)
+        else if (n / 2 < a && n / 2 < b)
         {
             n /= 2;
-            pivot += n;
+            a -= n;
+            b -= n;
         }
-
-        // 3. a < pivot < b 순일떄
-        else if (a <= pivot && b > pivot)
-        {
-            while (n > 1)
-            {
-                answer++;
-                n /= 2;
-            }
-        }
+        else
+            break;
     }
 
-    return answer;
+    while (n != 0)
+    {
+        n /= 2;
+        answer++;
+    }
+
+    return answer - 1;
 }
