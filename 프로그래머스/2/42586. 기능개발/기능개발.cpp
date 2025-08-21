@@ -1,54 +1,35 @@
-#include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <queue>
-#include <cmath>
 
 using namespace std;
 
-vector<int> solution(vector<int> progresses, vector<int> speeds)
-{
-	vector<int> answer;
+vector<int> solution(vector<int> progresses, vector<int> speeds) {
+    vector<int> answer;
 
-	queue<int> leftDays;
+    // 1. 모든 진척도에 speed를 더함
+    //2. 제일 앞 숫자가 100이 되었을 때 100 이상인 것 개수 싹 세어서 삽입
+    // 반복
 
-	// 0. 만약 progress가 1개밖에 없으면 그냥 1 return
-	if (progresses.size() == 1)
-	{
-		answer.push_back(1);
-		return answer;
-	}
+    while (!progresses.empty())
+    {
+        if (progresses[0] >= 100)
+        {
+            int count = 0;
+            while (!progresses.empty() && progresses[0] >= 100)
+            {
+                progresses.erase(progresses.begin());
+                speeds.erase(speeds.begin());
+                count++;
+            }
+            answer.push_back(count);
+            continue;
+        }
 
-	// 1. 출시까지 남은 일수를 출시 순서대로 큐에 삽입
-	for (int i = 0; i < progresses.size(); i++)
-	{
-		int days = ceil((100.0f - progresses[i]) / speeds[i]);
-		leftDays.push(days);
-	}
+        for (int i = 0;i < progresses.size();i++)
+        {
+            progresses[i] += speeds[i];
+        }
+    }
 
-	int nowDay = leftDays.front();
-	leftDays.pop();
-	int count = 1;		// 출시 때 나가는 개수 세기
-	while (!leftDays.empty())
-	{
-		// 다음 순번의 기능 완성까지 남은 시간이 앞의 순번보다 빠르다면 같이 출시
-		if (leftDays.front() <= nowDay)
-		{
-			leftDays.pop();
-			count++;
-		}
-		else
-		{
-			// 처음으로 더 오래 걸리는 기능이 나오면 
-			// 앞선 기능을 모두 더한 count를 삽입
-			answer.push_back(count);
-			nowDay = leftDays.front();
-			leftDays.pop();
-			count = 1;
-		}
-	}
-	answer.push_back(count);
-
-	return answer;
+    return answer;
 }
