@@ -55,20 +55,20 @@ namespace p31
     }
 
 }
-void print(vector<int> vec)
-{
-    copy(vec.begin(), vec.end(), std::ostream_iterator<int>(cout, " "));
-    cout << endl;
-}
-
-int main()
-{
-    vector<string> enroll = { "john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young" };
-    vector<string> referral = { "-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward" };
-    vector<string> seller = { "young", "john", "tod", "emily", "mary" };
-    vector<int> amount = { 12, 4, 2, 5, 10 };
-
-    vector<int> i = p31::solution(enroll, referral, seller, amount);
-
-    print(i);
-}
+//void print(vector<int> vec)
+//{
+//    copy(vec.begin(), vec.end(), std::ostream_iterator<int>(cout, " "));
+//    cout << endl;
+//}
+//
+//int main()
+//{
+//    vector<string> enroll = { "john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young" };
+//    vector<string> referral = { "-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward" };
+//    vector<string> seller = { "young", "john", "tod", "emily", "mary" };
+//    vector<int> amount = { 12, 4, 2, 5, 10 };
+//
+//    vector<int> i = p31::solution(enroll, referral, seller, amount);
+//
+//    print(i);
+//}

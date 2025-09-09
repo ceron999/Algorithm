@@ -136,10 +136,14 @@
     <ClCompile Include="P_012.cpp" />
     <ClCompile Include="P_013.cpp" />
     <ClCompile Include="P_017.cpp" />
+    <ClCompile Include="P_073.cpp" />
+    <ClCompile Include="P_074.cpp" />
     <ClCompile Include="P_16.cpp" />
     <ClCompile Include="P_28.cpp" />
     <ClCompile Include="P_30.cpp" />
     <ClCompile Include="P_31.cpp" />
+    <ClCompile Include="P_56.cpp" />
+    <ClCompile Include="P_57.cpp" />
     <ClCompile Include="tamplete.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,24 +4,29 @@
 
 using namespace std;
 
-long long solution(long long n) 
-{
+long long solution(long long n) {
     long long answer = 0;
 
-    vector<int> nVec;
+    vector<int> nVector;
+
     while (n != 0)
     {
-        nVec.push_back(n % 10);
+        nVector.push_back(n % 10);
         n /= 10;
     }
 
-    sort(nVec.begin(), nVec.end(), [](const int& a, const int& b) { return a < b; });
-
-    int size = 1;
-    for (int nowNum : nVec)
+    sort(nVector.begin(), nVector.end(), [](const auto& a, const auto& b)
+        {
+            return a > b;
+        });
+    
+    while (!nVector.empty())
     {
-        answer += nowNum * size;
-        size *= 10;
+        answer *= 10;
+        answer += nVector[0];
+
+        nVector.erase(nVector.begin());
     }
+
     return answer;
 }

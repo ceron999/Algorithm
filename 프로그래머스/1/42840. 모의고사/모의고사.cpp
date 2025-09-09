@@ -5,42 +5,29 @@
 
 using namespace std;
 
-vector<int> solution(vector<int> answers)
-{
+vector<int> solution(vector<int> answers) {
     vector<int> answer;
-    int answersSize = answers.size();
-
-    vector<int> answerPattern_1 = { 1,2,3,4,5 };
-    vector<int> answerPattern_2 = { 2,1,2,3,2,4,2,5, };
-    vector<int> answerPattern_3 = { 3,3,1,1,2,2,4,4,5,5 };
-
-    int result_1 = 0;
-    int result_2 = 0;
-    int result_3 = 0;
-
-    for (int i = 0; i < answersSize;i++)
+    
+    vector<int> pattern_1 = {1,2,3,4,5};
+    vector<int> pattern_2 = {2,1,2,3,2,4,2,5};
+    vector<int> pattern_3 = {3,3,1,1,2,2,4,4,5,5};
+    
+    vector<int> correctCount(3);
+    
+    for(int i=0;i< answers.size();i++)
     {
-        if (answers[i] == answerPattern_1[i % answerPattern_1.size()]) result_1++;
-        if (answers[i] == answerPattern_2[i % answerPattern_2.size()]) result_2++;
-        if (answers[i] == answerPattern_3[i % answerPattern_3.size()]) result_3++;
+        if(answers[i] == pattern_1[i%pattern_1.size()]) correctCount[0]++;
+        if(answers[i] == pattern_2[i%pattern_2.size()]) correctCount[1]++;
+        if(answers[i] == pattern_3[i%pattern_3.size()]) correctCount[2]++;
     }
-
-    vector<pair<int, int>> results =
+    
+    int maxValue = *max_element(correctCount.begin(), correctCount.end());
+    
+    for(int i =0; i< correctCount.size();i++)
     {
-        {1, result_1},
-        {2, result_2},
-        {3, result_3},
-    };
-
-    sort(results.begin(), results.end(), [](auto& a, auto& b) { return a.second > b.second; });
-
-    answer.push_back(results[0].first);
-
-    if(results[1].second == results[0].second)
-        answer.push_back(results[1].first);
-
-    if (results[2].second == results[0].second)
-        answer.push_back(results[2].first);
-
+        if(correctCount[i] == maxValue)
+            answer.push_back(i + 1);
+    }
+    
     return answer;
 }
