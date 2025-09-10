@@ -1,44 +1,33 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<map>
 
 using namespace std;
 
-int n, k;
+// 
+int n, prefix[100004], k, best = -999999999;
 
 int main()
 {
 	cin >> n >> k;
 
-	vector<int> inputs;
-	inputs.resize(n, 0);
-
-	int best = -999999999;
-	int curr = 0;
-
-	for (int i = 0; i < n;i++)
+	for (int i = 1;i <= n;i++)
 	{
-		cin >> inputs[i];
-
-		if (i == k - 1)
-		{
-			curr += inputs[i];
-			best = curr;
-		}
-		else if (i < k)
-			curr += inputs[i];
-		else
-		{
-			curr = curr - inputs[i - k] + inputs[i];
-			if (best < curr)
-				best = curr;
-		}
+		int num;
+		cin >> num;
+		prefix[i] = prefix[i - 1] + num;
 	}
 
-	if (n == k)
-		best = curr;
-
+	best = prefix[k];
+	for (int i = k + 1; i <= n;i++)
+	{
+		int curr = prefix[i] - prefix[i - k];
+		if (best < curr)
+		{
+			best = curr;
+		}
+	}
 	cout << best;
-
 	return 0;
 }
