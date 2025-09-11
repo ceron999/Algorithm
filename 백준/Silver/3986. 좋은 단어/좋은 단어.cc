@@ -5,37 +5,30 @@
 
 using namespace std;
 
-// 
-int n;
-string names[104];
-
-bool IsNotCross(string s)
-{
-	stack<char> stk;
-
-	for (char c : s)
-	{
-		if (stk.size() != 0 && stk.top() == c)
-			stk.pop();
-		else
-			stk.push(c);
-	}
-	
-	return stk.size() == 0;
-}
-
+int n, cnt = 0;
+string word;
 int main()
 {
 	cin >> n;
-	for (int i = 0;i < n;i++)
-		cin >> names[i];
 
-	int count = 0;
-	for (int i = 0;i < n;i++)
+	for (int i = 0; i < n; i++)
 	{
-		if (IsNotCross(names[i]))
-			count++;
-	}
+		cin >> word;
 
-	cout << count;
+		stack<char> stk;
+		for (char c : word)
+		{
+			if (stk.size() != 0 && stk.top() == c)
+			{
+				stk.pop();
+			}
+			else
+				stk.push(c);
+		}
+
+		if (stk.size() == 0)
+			cnt++;
+	}
+	cout << cnt;
+	return 0;
 }
