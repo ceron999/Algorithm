@@ -1,43 +1,54 @@
 #include<iostream>
 #include<vector>
-#include<string>
-#include<map>
+#include<algorithm>
 
 using namespace std;
 
-// n개의 포켓몬개수 , 맞춰야할 문제 개수 m
-// 2~n+1까지 포켓몬 이름(첫 글자 대문자 or 마지막 글자만 대문자)
-// 그 다음 줄부터 m개의 줄에 내가 맞춰야할 문제 들어옴  - 알파벳은 번호 번호는 알파벳
-// 번호는 1~n으로 들어옴 0은 무시해야함
-int n, m;
-map<stirng, int> mp;
-map<int, string> mp2;
-string a[100004];
+int n, map[65][65];
+string input, ret;
+
+void dfs(int y, int x, int size)
+{
+	if (size == 1)
+	{
+		ret.push_back(map[y][x]);
+	}
+
+	int num = map[x][y];
+	if (map[y][x + size - 1] != num ||
+		map[y + size - 1][x] != num ||
+		map[y + size - 1][x + size - 1] != num)
+	{
+		ret.push_back
+		dfs(y, x, size / 2);
+		dfs(y, x + (size / 2), size / 2);
+		dfs(y + (size / 2), x, size / 2);
+		dfs(y + (size / 2), x + (size / 2), size / 2);
+	}
+}
 
 int main()
 {
-	cin >> n >> m;
+	cin >> n;
 
-	for (int i = 0; i < n;i++)
+	for (int i = 0;i < n;i++)
 	{
-		cin >> s;
-		mp[s] = i + 1;
-		mp2[i+1] = s;
-		a[i + 1] = s;
-	}
-
-	for (int i = 0;i < m;i++)
-	{
-		cin >> s;
-		if (atoi(s.c_str()) == 0)
+		cin >> input;
+		for (int j = 0;j < n;j++)
 		{
-			cout << mp[s] << "\n";
-		}
-		else
-		{
-			cout << a[atoi(s.c_str())] << "\n";
+			map[i][j] = (input[j] - '0');
 		}
 	}
-	
-	return 0;
+
+	dfs(0, 0, n);
+	//test
+	cout << endl;
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			cout << map[i][j] << " ";
+		}
+		cout << endl;
+	}
 }
