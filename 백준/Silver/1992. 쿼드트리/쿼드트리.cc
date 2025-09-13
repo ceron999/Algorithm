@@ -4,65 +4,56 @@
 
 using namespace std;
 
-int n, map[65][65];
-string input, ret;
+int n;
+char map[64][64];
 
-void dfs(int y, int x, int size)
+string quard(int y, int x, int size)
 {
+	string ret = "";
 	if (size == 1)
 	{
-		ret.push_back(map[y][x] + '0');
-		return;
+		ret.push_back(map[y][x]);
+		return ret;
 	}
 
-	int num = map[y][x];
-
-	for (int ny = y; ny < y + size; ny++)
+	char c = map[y][x];
+	for (int i = y; i < y + size; i++)
 	{
-		for (int nx = x; nx < x + size; nx++)
+		for (int j = x; j < x + size; j++)
 		{
-			if (map[ny][nx] != num)
+			if (c != map[i][j])
 			{
-				ret.push_back('(');
-
-				dfs(y, x, size / 2);
-				dfs(y, x + (size / 2), size / 2);
-				dfs(y + (size / 2), x, size / 2);
-				dfs(y + (size / 2), x + (size / 2), size / 2);
-
-				ret.push_back(')');
-				return;
+				ret += '(';
+				ret += quard(y, x, size / 2);
+				ret += quard(y, x + size / 2, size / 2);
+				ret += quard(y + size / 2, x, size / 2);
+				ret += quard(y + size / 2, x + size / 2, size / 2);
+				ret += ')';
+				return ret;
 			}
 		}
-	};
+	}
 
-	ret.push_back(map[y][x] + '0');
+	ret.push_back(c);
+	return ret;
 }
 
 int main()
 {
 	cin >> n;
 
-	for (int i = 0;i < n;i++)
+	for (int i = 0;i < n; i++)
 	{
+		string input;
 		cin >> input;
-		for (int j = 0;j < n;j++)
+
+		for (int j = 0; j < n; j++)
 		{
-			map[i][j] = (input[j] - '0');
+			map[i][j] = input[j];
 		}
 	}
 
-	dfs(0, 0, n);
+	string ret = quard(0, 0, n);
 
 	cout << ret;
-	//test
-	/*cout << endl;
-	for (int i = 0;i < n;i++)
-	{
-		for (int j = 0;j < n;j++)
-		{
-			cout << map[i][j] << " ";
-		}
-		cout << endl;
-	}*/
 }
