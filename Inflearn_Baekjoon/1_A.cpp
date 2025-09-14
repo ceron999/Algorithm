@@ -1,54 +1,61 @@
 #include<iostream>
 #include<vector>
-#include<algorithm>
 
 using namespace std;
 
-int n, map[65][65];
-string input, ret;
+int n, m, map[9][9], maxSize = 0;
+int test[9][9];
 
-void dfs(int y, int x, int size)
+// 1. 1을 3개를 둔다.
+// 2. dfs를 통해 2를 퍼트린다.
+// 3. 0 개수를 확인한다.
+
+void spread()
 {
-	if (size == 1)
-	{
-		ret.push_back(map[y][x]);
-	}
 
-	int num = map[x][y];
-	if (map[y][x + size - 1] != num ||
-		map[y + size - 1][x] != num ||
-		map[y + size - 1][x + size - 1] != num)
-	{
-		ret.push_back
-		dfs(y, x, size / 2);
-		dfs(y, x + (size / 2), size / 2);
-		dfs(y + (size / 2), x, size / 2);
-		dfs(y + (size / 2), x + (size / 2), size / 2);
-	}
 }
 
-int main()
+void installWall(int y, int x, int size)
 {
-	cin >> n;
-
-	for (int i = 0;i < n;i++)
+	if (size == 3)
 	{
-		cin >> input;
-		for (int j = 0;j < n;j++)
-		{
-			map[i][j] = (input[j] - '0');
-		}
+		for (int i = 0; i < n;i++)
+			for (int j = 0;j < m;j++)
+			{
+				test[i][j] = map[i][j];
+			}
+
+		spread();
+		return;
 	}
 
-	dfs(0, 0, n);
-	//test
+	for(int i= y + 1; i< n;i++)
+		for (int j = x + 1;j < m;j++)
+		{
+			if (map[i][j] == 0)
+			{
+				map[i][j] = 1;
+				installWall(i, j, size + 1);
+				map[i][j] = 0;
+			}
+		}
+}
+int main()
+{
+	cin >> n >> m;
+	
+	for (int i = 0;i < n;i++)
+		for (int j = 0;j < m;j++)
+			cin >> map[i][j];
+	
+	installWall(-1,-1, 0);
+	
+	//
 	cout << endl;
 	for (int i = 0;i < n;i++)
 	{
-		for (int j = 0;j < n;j++)
-		{
-			cout << map[i][j] << " ";
-		}
+		for (int j = 0;j < m;j++)
+			cout << test[i][j] << " ";
 		cout << endl;
 	}
 }
