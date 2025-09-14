@@ -1,71 +1,64 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#include<unordered_map>
 
 using namespace std;
-
-// 숫자와 알파벳으로 된 글자 n 줄
-// 숫자 찾기 + 비 내림차순 +0 제외
-// 연속적인 숫자는 하나의 수
 
 
 
 int main()
 {
 	int n;
-	string input;
-
 	cin >> n;
 
 	vector<string> nums;
 	while (n--)
 	{
+		string input;
 		cin >> input;
 
-		string numStr;
-		for (int i = 0;i < input.size();i++)
+		string currNum;
+		for (char c : input)
 		{
-			if (input[i] >= 'a' && input[i] <= 'z')
+			if (c < 'a')
 			{
-				if (numStr.size() != 0)
-				{
-					nums.push_back(numStr);
-					numStr.clear();
-				}
+				currNum.push_back(c);
 			}
 			else
-				numStr.push_back(input[i]);
+			{
+				if (currNum.size() == 0) continue;
+
+				while (currNum.size() > 0 && currNum[0] == '0')
+				{
+					currNum.erase(currNum.begin());
+				}
+
+				if (currNum.size() != 0)
+					nums.push_back(currNum);
+				else
+					nums.push_back("0");
+				currNum = "";
+			}
 		}
 
-		if (numStr.size() != 0)
+		if (currNum.size() == 0) continue;
+
+		while (currNum.size() > 0 && currNum[0] == '0')
 		{
-			nums.push_back(numStr);
+			currNum.erase(currNum.begin());
 		}
-	}
-
-	for (int i=0;i<nums.size();i++)
-	{
-		int idx = -1;
-		for (char c : nums[i])
-		{
-			if (c == '0') idx++;
-			else
-				break;
-		}
-
-		if (idx == -1) continue;
-		if (idx + 1 == nums[i].size()) nums[i] = '0';
+		if (currNum.size() != 0)
+			nums.push_back(currNum);
 		else
-			nums[i] = nums[i].substr(idx + 1);
+			nums.push_back("0");
 	}
 
-	sort(nums.begin(), nums.end(), [](const auto& a, const auto& b)
+	sort(nums.begin(), nums.end(), [](const string& a, const string& b)
 		{
-			if (a.size() != b.size())
-				return a.size() < b.size();
-			return a < b;
+			if (a.size() != b.size()) return a.size() < b.size();
+			else
+				return a < b;
 		});
-	for (string i : nums) 
-		cout << i << "\n";
+	
+	for (string num : nums) cout << num << "\n";
 }
