@@ -1,35 +1,33 @@
 #include<iostream>
 #include<vector>
 #include<string>
-#include<map>
 #include<stack>
 
 using namespace std;
 
-map<char, char> pairs;
-
 int main()
 {
-	pairs['('] = ')';
-	pairs['['] = ']';
-
 	string input;
-	while (std::getline(cin, input))
+	while (getline(cin, input))
 	{
-		if (input[0] == '.') continue;
+		if (input[0] == '.') break;
 
 		stack<char> stk;
 		for (char c : input)
 		{
-			if (c == '(' || c == ')' || c == '[' || c == ']')
+			if (c == '(' || c == '[') stk.push(c);
+			if (c == ')' || c == ']')
 			{
-				if (stk.size() > 0 && pairs[stk.top()] == c) 
-					stk.pop();
-				else 
+				if (stk.size() == 0)
+				{
 					stk.push(c);
+					break;
+				}
+				else if (stk.top() == '(' && c == ')') stk.pop();
+				else if (stk.top() == '[' && c == ']') stk.pop();
+				else break;
 			}
 		}
-
 
 		cout << (stk.size() == 0 ? "yes\n" : "no\n");
 	}
