@@ -4,15 +4,17 @@
 
 using namespace std;
 
-int n, p[1000004], dp[1000004];
+int n;
+int p[1000004];
+int dp[1000004];
 
 int main()
 {
 	fill(&dp[0], &dp[0] + 1000004, -1);
-	stack<int> stk;
-
 	cin >> n;
-	for (int i = 0; i < n; i++)
+
+	stack<int> stk;
+	for (int i = 1; i <= n;i++)
 	{
 		cin >> p[i];
 
@@ -23,5 +25,6 @@ int main()
 		}
 		stk.push(i);
 	}
-	for (int i = 0; i < n;i++) cout << dp[i] << " ";
+
+	for (int i = 1; i <= n; i++) cout << dp[i] << " ";
 }
