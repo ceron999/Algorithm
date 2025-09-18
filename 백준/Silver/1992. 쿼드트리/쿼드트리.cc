@@ -1,59 +1,57 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<queue>
 
 using namespace std;
 
 int n;
-char map[64][64];
+char a[65][65];
+string s;
 
 string quard(int y, int x, int size)
 {
 	string ret = "";
+	char start = a[y][x];
+
 	if (size == 1)
 	{
-		ret.push_back(map[y][x]);
+		ret += start;
 		return ret;
 	}
 
-	char c = map[y][x];
-	for (int i = y; i < y + size; i++)
-	{
-		for (int j = x; j < x + size; j++)
+	for(int ny =y; ny<y + size; ny++)
+		for (int nx = x; nx < x + size; nx++)
 		{
-			if (c != map[i][j])
+			if (a[ny][nx] != start)
 			{
-				ret += '(';
+				ret += "(";
 				ret += quard(y, x, size / 2);
 				ret += quard(y, x + size / 2, size / 2);
 				ret += quard(y + size / 2, x, size / 2);
 				ret += quard(y + size / 2, x + size / 2, size / 2);
-				ret += ')';
+				ret += ")";
 				return ret;
 			}
 		}
-	}
 
-	ret.push_back(c);
+	ret += start;
 	return ret;
 }
 
 int main()
 {
 	cin >> n;
-
-	for (int i = 0;i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		string input;
-		cin >> input;
-
+		cin >> s;
 		for (int j = 0; j < n; j++)
 		{
-			map[i][j] = input[j];
+			a[i][j] = s[j];
 		}
 	}
 
-	string ret = quard(0, 0, n);
+	string result = quard(0, 0, n);
 
-	cout << ret;
+	cout << result<< "\n\n";
 }
