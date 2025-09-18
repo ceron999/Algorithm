@@ -1,34 +1,31 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 #include<string>
 #include<stack>
 
 using namespace std;
 
-int n, cnt = 0;
-string word;
+
+
 int main()
 {
+	int n, ret =0;
 	cin >> n;
-
-	for (int i = 0; i < n; i++)
+	while (n--)
 	{
-		cin >> word;
+		string s;
+		cin >> s;
 
 		stack<char> stk;
-		for (char c : word)
+		for (char c : s)
 		{
-			if (stk.size() != 0 && stk.top() == c)
-			{
-				stk.pop();
-			}
+			if (stk.size() > 0 && stk.top() == c) stk.pop();
 			else
 				stk.push(c);
 		}
 
-		if (stk.size() == 0)
-			cnt++;
+		if (stk.size() == 0) ret++;
 	}
-	cout << cnt;
-	return 0;
+	cout << ret;
 }
