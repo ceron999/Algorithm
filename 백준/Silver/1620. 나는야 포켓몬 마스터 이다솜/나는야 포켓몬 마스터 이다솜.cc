@@ -1,52 +1,41 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 #include<string>
-#include<map>
+#include<unordered_map>
 
 using namespace std;
 
-// n개의 포켓몬개수 , 맞춰야할 문제 개수 m
-// 2~n+1까지 포켓몬 이름(첫 글자 대문자 or 마지막 글자만 대문자)
-// 그 다음 줄부터 m개의 줄에 내가 맞춰야할 문제 들어옴  - 알파벳은 번호 번호는 알파벳
-// 번호는 1~n으로 들어옴 0은 무시해야함
-int n, m;
+int n,m;
+
+string input;
+unordered_map<int, string> map1;
+unordered_map<string, int> map2;
 
 int main()
 {
-	map<string, int> poketmonStringMap;
-	map<int, string> poketmonMap;
-	
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
 	cin >> n >> m;
 
-	for (int i = 1; i <= n; i++)
+	for (int i = 1; i <= n;i++)
 	{
-		string name;
-		cin >> name;
-
-		poketmonStringMap[name] = i;
-		poketmonMap[i] = name;
-	}
-
-
-	vector<string> questions;
-	questions.resize(m, "");
-	for (int i = 0;i < m;i++)
-	{
-		cin >> questions[i];
+		cin>> input;
+		map1.insert({ i, input });
+		map2.insert({ input, i });
 	}
 
 	for (int i = 0;i < m;i++)
 	{
-		if (questions[i][0] < 'A')
+		cin >> input;
+
+		int parseNum = atoi(input.c_str());
+		if (parseNum == 0)
 		{
-			int num = stoi(questions[i]);
-			cout << poketmonMap[num] << "\n";
+			cout << map2[input] << "\n";
 		}
 		else
-		{
-			cout << poketmonStringMap[questions[i]] << "\n";
-		}
+			cout << map1[parseNum] << "\n";
 	}
-	
-	return 0;
 }
