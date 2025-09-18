@@ -1,44 +1,18 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
+#include<string>
 #include<queue>
 
 using namespace std;
+typedef long long ll;
 
-typedef pair<int, int> Pair;
-
-int n, m;
-int dy[] = { -1,0,1,0 };
-int dx[] = { 0,1,0,-1 };
-
-int map[101][101];
+int n,m;
+int a[101][101];
 int visited[101][101];
 
-void bfs()
-{
-	visited[0][0] = 1;
-
-	queue<Pair> q;
-	q.push({ 0,0 });
-
-	while (q.size() != 0)
-	{
-		Pair now = q.front();
-		q.pop();
-
-		for (int i = 0; i < 4; i++)
-		{
-			int ny = now.first + dy[i];
-			int nx = now.second + dx[i];
-
-			if (ny < 0 || ny >= n || nx < 0 || nx >=m) continue;
-			if (map[ny][nx] == 0) continue;
-			if (visited[ny][nx] != 0) continue;
-
-			visited[ny][nx] = visited[now.first][now.second] + 1;
-			q.push({ ny, nx });
-		}
-	}
-}
+int dy[] = {-1,0,1,0};
+int dx[] = {-0,1,0,-1};
 
 int main()
 {
@@ -46,15 +20,38 @@ int main()
 
 	for (int i = 0;i < n;i++)
 	{
-		string input;
-		cin >> input;
-		for (int j = 0; j < m;j++)
+		string s;
+		cin >> s;
+		for (int j = 0;j < m;j++)
 		{
-			map[i][j] = (input[j] - '0');
+			a[i][j] = s[j] - '0';
 		}
 	}
 
-	bfs();
+	visited[0][0] = 1;
+	queue<pair<int,int>> q;
+	q.push({ 0,0 });
+
+	while (q.size())
+	{
+		auto [y, x] = q.front();
+		q.pop();
+
+		for (int i = 0;i < 4;i++)
+		{
+			int ny = y + dy[i];
+			int nx = x + dx[i];
+
+			if (ny < 0 || ny >= n || nx < 0 || nx >= m)continue;
+			if (a[ny][nx] == 0) continue;
+			if (visited[ny][nx] == 0)
+			{
+				visited[ny][nx] = visited[y][x] + 1;
+				q.push({ ny, nx });
+			}
+		}
+	}
 
 	cout << visited[n - 1][m - 1];
+
 }
