@@ -1,31 +1,27 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 #include<string>
 
 using namespace std;
 
-int n, aTime = 0, bTime = 0, aScore = 0, bScore = 0, prevTime = 0;
+int n;
+int a = 0, b = 0, atIme = 0, btime = 0;
+int last = 0;
 
-int parseTImeStrToInt(string& time)
+int parseStrToInt(string& time)
 {
-	int min = stoi(time.substr(0, 2));
-	int sec = stoi(time.substr(3, 2));
-	
-	return min * 60 + sec;
+	string m = time.substr(0, 2);
+	string s = time.substr(3);
+	return atoi(m.c_str()) * 60 + atoi(s.c_str());
 }
 
-string parseTimeToStr(int time)
+string parseIntToStr(int& time)
 {
-	string result;
+	string min = "00" + to_string(time / 60);
+	string sec = "00" + to_string(time % 60);
 
-	int min = time / 60;
-	int sec = time % 60;
-
-	string minStr = "00" + to_string(min);
-	string secStr = "00" + to_string(sec);
-
-	result = minStr.substr(minStr.size() - 2) + ":" + secStr.substr(secStr.size() - 2);
-	return result;
+	return min.substr(min.size() - 2) + ":" + sec.substr(sec.size() - 2);
 }
 
 int main()
@@ -34,34 +30,33 @@ int main()
 
 	while (n--)
 	{
-		int winTeam;
-		int time;
-		string timeStr;
-		cin >> winTeam >> timeStr;
+		int team;
+		string t;
+		cin >> team >> t;
 
-		time = parseTImeStrToInt(timeStr);
-		
-		if (aScore > bScore)
+		int currTime = parseStrToInt(t);
+
+		if (a > b)
 		{
-			aTime += (time - prevTime);
+			atIme += currTime - last;
 		}
-		else if (aScore < bScore)
+		else if(a < b)
 		{
-			bTime += (time - prevTime);
+			btime += currTime - last;
 		}
-		prevTime = time;
-		winTeam == 1 ? aScore++ : bScore++;
+		last = currTime;
+
+		team == 1 ? a++ : b++;
+	}
+	if (a > b)
+	{
+		atIme += 48 * 60 - last;
+	}
+	else if (a < b)
+	{
+		btime += 48 * 60 - last;
 	}
 
-	if (aScore > bScore)
-	{
-		aTime += (48 * 60 - prevTime);
-	}
-	else if (aScore < bScore)
-	{
-		bTime += (48 * 60 - prevTime);
-	}
-
-	cout << parseTimeToStr(aTime) << "\n";
-	cout << parseTimeToStr(bTime) << "\n";
+	cout << parseIntToStr(atIme) << endl;
+	cout << parseIntToStr(btime) << endl;
 }
