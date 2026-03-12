@@ -9,22 +9,28 @@ using namespace std;
 int n;
 int a[1000004];
 
-int main()
-{
-	cin >> n;
-	for (int i = 1; i <= n; i++)
-	{
-		int dest = i;
-		int curr = i;
-		while (curr > 0)
-		{
-			dest += curr % 10;
-			curr /= 10;
-		}
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-		if (dest > 1000000)break;
-		if(a[dest] == 0 || a[dest] > i)
-			a[dest] = i;
-	}
-	cout << a[n];
+    int n;
+    cin >> n;
+
+    int d = (int)to_string(n).size();
+    int start = max(1, n - 9 * d);
+
+    for (int i = start; i <= n; i++) {
+        int dest = i;
+        int curr = i;
+        while (curr > 0) {
+            dest += curr % 10;
+            curr /= 10;
+        }
+        if (dest == n) {
+            cout << i;
+            return 0;
+        }
+    }
+
+    cout << 0;
 }
