@@ -9,22 +9,20 @@ using namespace std;
 int n, m, ret;
 vector<int> v;
 
-void go(int here, vector<int> &curr)
+void go(int here, int cnt, int sum)
 {
-    if (curr.size() == 3)
+    if (sum > m) return;
+    
+    if (cnt == 3)
     {
-        int sum = 0;
-        for (int i : curr) sum += i;
-        if (sum <= m && sum > ret) ret = sum;
+        ret = max(ret, sum);
         return;
     }
-    if (here == v.size()) return;
 
+    if (here == n) return;
 
-    curr.push_back(v[here]);
-    go(here + 1, curr);
-    curr.pop_back();
-    go(here + 1, curr);
+    go(here + 1, cnt + 1, sum + v[here]);
+    go(here + 1, cnt, sum);
 }
 
 int main() 
@@ -38,7 +36,7 @@ int main()
     }
 
     vector<int> result;
-    go(0, result);
+    go(0, 0, 0);
 
     cout << ret;
 }
