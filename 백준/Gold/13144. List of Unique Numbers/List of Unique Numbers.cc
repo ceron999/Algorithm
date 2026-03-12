@@ -1,37 +1,31 @@
 #include<iostream>
 #include<vector>
-#include<algorithm>
+#include<string>
 
 using namespace std;
 
-typedef long long ll;
+long long n, ret, a[100004], cnt[100004], s, e;
 
-ll s, e, cnt[100001], n, a[100001];
-ll ret;
-
-int main()
+int main() 
 {
-	cin >> n;
-	for (int i = 0;i < n;i++)
-	{
-		cin >> a[i];
-	}
+    cin >> n;
+    for (int i = 0; i < n; i++) cin >> a[i];
 
-	while (e < n)
-	{
-		if (!cnt[a[e]])
-		{
-			cnt[a[e]]++;
-			e++;
-		}
-		else
-		{
-			ret += (e - s);
-			cnt[a[s]]--;
-			s++;
-		}
-	}
-	ret += (e - s)* (e - s + 1) / 2;
+    while (e < n)
+    {
+        if (cnt[a[e]] == 0)
+        {
+            cnt[a[e]]++;
+            e++;
+        }
+        else
+        {
+            ret += e - s;
+            cnt[a[s]]--;
+            s++;
+        }
+    }
 
-	cout << ret;
+    ret += (e - s) * (e - s + 1) / 2;
+    cout << ret;
 }
