@@ -6,7 +6,7 @@
 using namespace std;
 
 int n;
-int a[1000004];
+int a[10004];
 
 int main() 
 {
@@ -20,7 +20,7 @@ int main()
         a[temp]++;
     }
 
-    for (int i = 0; i < 1000001; i++)
+    for (int i = 0; i < 10004; i++)
     {
         if (a[i] == 0) continue;
         for (int j = 0; j < a[i]; j++)
