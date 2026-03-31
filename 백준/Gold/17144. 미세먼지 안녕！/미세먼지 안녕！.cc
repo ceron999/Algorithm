@@ -2,129 +2,153 @@
 #include<vector>
 #include<algorithm>
 #include<queue>
+#include <deque>
+#include<cstring>
 
 using namespace std;
 
-int a[51][51], n, m, t, ret, temp[51][51];
-vector<pair<int, int>> v1, v2;
+int r, c, t, ret;
+int a[51][51], temp[51][51];
 
+// upper dir
 int dy1[] = { 0,-1,0,1 };
 int dx1[] = { 1,0,-1,0 };
 
+// lower dir
 int dy2[] = { 0,1,0,-1 };
 int dx2[] = { 1,0,-1,0 };
 
-void mise_go(int dy[], int dx[])
+pair<int, int> upper;
+pair<int, int> lower;
+
+vector<pair<int, int>> v;
+deque<int> dq;
+
+void spread()
 {
-	fill(&temp[0][0], &temp[0][0] + 51 * 51, 0);
-	queue<pair<int, int>> q;
+	memset(temp, 0, sizeof(temp));
 
-	for (int i = 0; i < n; i++)
+	for (int i = 0;i < r;i++)
 	{
-		for (int j = 0;j < m;j++)
+		for (int j = 0;j < c;j++)
 		{
-			if (a[i][j] != -1 && a[i][j])
-				q.push({ i,j });
+			if (a[i][j] == 0) continue;
+			
+			int dust = a[i][j] / 5;
+			if (dust == 0) continue;
+			
+			for (int idx = 0; idx < 4; idx++)
+			{
+				int ny = i + dy1[idx];
+				int nx = j + dx1[idx];
+				
+				if (ny < 0 || ny >= r || nx < 0 || nx >= c) continue;
+				if (a[ny][nx] == -1) continue;
+
+				temp[ny][nx] += dust;
+				
+				a[i][j] -= dust;
+			}
 		}
 	}
 
-	while (q.size())
+	for (int i = 0;i < r;i++)
 	{
-		int y = q.front().first;
-		int x = q.front().second;
-		q.pop();
-
-		int spread = a[y][x] / 5;
-
-		for (int i = 0; i < 4; i++)
-		{
-			int ny = y + dy[i];
-			int nx = x + dx[i];
-			if (ny < 0 || ny >= n || nx < 0 || nx >= m || a[ny][nx] == -1) continue;
-			temp[ny][nx] += spread;
-			a[y][x] -= spread;
-		}
-	}
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0;j < m;j++)
+		for (int j = 0;j < c;j++)
 		{
 			a[i][j] += temp[i][j];
 		}
 	}
 }
 
-vector<pair<int, int>> chung(int sy, int sx, int dy[], int dx[])
+void move(pair<int, int> start, int dy[], int dx[])
 {
-	vector<pair<int, int>> v;
-	int cnt = 0;
-	int y = sy;
-	int x = sx;
+	v.clear();
+	dq.clear();
+
+	int starty = start.first;
+	int startx = start.second;
+	int ny = starty;
+	int nx = startx;
+
+	int idx = 0;
 
 	while (true)
 	{
-		int ny = y + dy[cnt];
-		int nx = x + dx[cnt];
+		ny += dy[idx % 4];
+		nx += dx[idx % 4];
 
-		if (ny == sy && nx == sx) break;
-		if (ny < 0 || ny >= n || nx < 0 || nx >= m)
+		if (ny < 0 || ny >= r || nx < 0 || nx >= c)
 		{
-			cnt++;
-			ny = y + dy[cnt];
-			nx = x + dx[cnt];
-		}
-		if (ny == sy && nx == sx) break;
-		y = ny; x = nx;
-		v.push_back({ ny,nx });
-		
+			ny -= dy[idx % 4];
+			nx -= dx[idx % 4];
+			idx++;
+			continue;
+		}if (a[ny][nx] == -1) break;
+
+		v.push_back({ ny, nx });
+		dq.push_back(a[ny][nx]);
 	}
 
-	return v;
-}
+	dq.push_front(0);
+	dq.pop_back();
 
-void go(vector<pair<int, int>>& v)
-{
-	for (int i = v.size() - 1; i > 0; i--)
+
+	for (auto it : v)
 	{
-		a[v[i].first][v[i].second] = a[v[i - 1].first][v[i - 1].second];
+		//cout << "{ " << it.first << " " << it.second << " " << dq.front() << " }\n";
+
+		int y = it.first;
+		int x = it.second;
+
+		a[y][x] = dq.front();
+		dq.pop_front();
 	}
-		a[v[0].first][v[0].second] = 0;
-		return;
 }
 
 int main()
 {
-	cin >> n >> m >> t;
-	bool flag = 1;
-	for (int i = 0; i < n; i++)
+	cin >> r >> c >> t;
+
+	bool isSet = false;
+	for (int i = 0;i < r;i++)
 	{
-		for (int j = 0; j < m; j++)
+		for (int j = 0;j < c;j++)
 		{
 			cin >> a[i][j];
-			if (a[i][j] == -1)
+
+			if (!isSet && a[i][j] == -1)
 			{
-				if (flag) 
-				{
-					v1 = chung(i, j, dy1, dx1);
-					flag = false;
-				}
-				else v2 = chung(i, j, dy2, dx2);
+				isSet = true;
+				upper = { i,j };
+				lower = { i + 1,j };
 			}
 		}
 	}
-	while (t--) 
-	{
-		mise_go(dy1, dx1);
-		go(v1);
-		go(v2);
-	}
 
-	for (int i = 0; i < n; i++) 
+	while (t--)
 	{
-		for (int j = 0; j < m; j++) 
+		spread();
+		move(upper, dy1,dx1);
+		move(lower, dy2,dx2);
+	}
+	
+	for (int i = 0;i < r;i++)
+	{
+		for (int j = 0;j < c;j++)
 		{
-			if (a[i][j] != -1)ret += a[i][j];
+			if (a[i][j] != -1) ret += a[i][j];
 		}
 	}
-	cout << ret << "\n";
+	cout << ret<< "\n\n";
+
+	/*for (int i = 0;i < r;i++)
+	{
+		for (int j = 0;j < c;j++)
+		{
+			cout << a[i][j] << " ";
+		}
+		cout << endl;
+	}*/
+
 }
